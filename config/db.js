@@ -24,7 +24,8 @@ async function connectDB() {
     console.log("Pinged your deployment. MongoDB connected successfully!");
 
     collections = {
-      users: db.collection("users")
+      users: db.collection("users"),
+      products: db.collection("products")
     };
 
   } catch (error) {
