@@ -26,5 +26,14 @@ router.get('/', async (req, res) => {
     res.send({ message: "user got successfully", users });
 });
 
+router.post('/', async (req, res) => {
+    if (!userCollection) {
+        return res.status(503).send({ message: "Database not ready" });
+    }
+    const userInfo = req.body;
+    const result = await userCollection.insertOne(userInfo);
+    res.send(result);
+});
+
 
 export default router;
