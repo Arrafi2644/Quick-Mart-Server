@@ -31,7 +31,16 @@ router.post('/', async (req, res) => {
         return res.status(503).send({ message: "Database not ready" });
     }
     const userInfo = req.body;
-    const result = await userCollection.insertOne(userInfo);
+    const email = userInfo.email;
+    const query = { email }
+    const isExist = await userCollection.findOne(query)
+    console.log(isExist);
+    let result;
+    if (isExist) {
+        return result = { message: "user already exist" }
+    } else {
+        result = await userCollection.insertOne(userInfo);
+    }
     res.send(result);
 });
 

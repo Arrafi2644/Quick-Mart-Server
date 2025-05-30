@@ -17,15 +17,16 @@ let collections = {};
 
 async function connectDB() {
   try {
-    await client.connect();
+    // await client.connect();
     const db = client.db("QuickMart");
 
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. MongoDB connected successfully!");
 
     collections = {
       users: db.collection("users"),
-      products: db.collection("products")
+      products: db.collection("products"),
+      categories: db.collection("categories")
     };
 
   } catch (error) {
