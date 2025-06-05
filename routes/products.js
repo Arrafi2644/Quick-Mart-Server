@@ -30,6 +30,7 @@ router.get('/', async (req, res) => {
     const warranty = req.query.warranty || "";
     const minPrice = Number(req.query.min) || 0;
     const maxPrice = Number(req.query.max) || 0;
+    console.log("Service ", service);
 
     // Build MongoDB query without price filtering
     let query = {};
@@ -39,7 +40,7 @@ router.get('/', async (req, res) => {
     if (brand && brand !== "undefined") {
         query.brand = brand;
     }
-    if (service === "true") {
+    if (service === "free-delivery") {
         query.is_delivery_free = true;
     }
     if (warranty && warranty !== "undefined") {
